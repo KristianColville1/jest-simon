@@ -1,3 +1,5 @@
+const { choices } = require("yargs");
+
 let game = {
     score: 0,
     currentGame: [],
@@ -10,10 +12,16 @@ function newGame(){
     game.currentGame = [];
     game.playerMoves = [];
     showScore();
+    addTurn();
 }
 
 function showScore() {
     document.getElementById("score").innerText = game.score;
 }
 
-module.exports = {game, newGame, showScore};
+function addTurn(){
+    game.playerMoves = [];
+    game.currentGame.push(game.choices[(Math.floor(Math.random() * choices.length))])
+}
+
+module.exports = {game, newGame, showScore, addTurn};
